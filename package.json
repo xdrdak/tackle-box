@@ -1,0 +1,34 @@
+{
+  "name": "tackle-box",
+  "version": "0.1.0",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@storybook/addon-actions": "^4.1.11",
+    "@storybook/addon-info": "^4.1.11",
+    "@storybook/addon-links": "^4.1.11",
+    "@storybook/addons": "^4.1.11",
+    "@storybook/react": "^4.1.11",
+    "@types/jest": "^24.0.0",
+    "@types/storybook__addon-actions": "^3.4.1",
+    "@types/storybook__addon-links": "^3.3.3",
+    "@types/storybook__react": "^4.0.0",
+    "awesome-typescript-loader": "^5.2.1",
+    "babel-loader": "^8.0.5",
+    "jest": "^24.1.0",
+    "react": "^16.8.1",
+    "react-docgen-typescript-loader": "^3.0.1",
+    "react-docgen-typescript-webpack-plugin": "^1.1.0",
+    "react-dom": "^16.8.1",
+    "typescript": "^3.3.1"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "scripts": {
+    "dev": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  }
+}
