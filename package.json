@@ -29,6 +29,7 @@
   },
   "scripts": {
     "dev": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "build": "tsc"
   }
 }
