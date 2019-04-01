@@ -1,7 +1,7 @@
-import { useReducer } from 'react';
+import { useReducer, Reducer } from 'react';
 
-interface ToggleKeys {
-  [key: string]: boolean;
+type ToggleKeys<T> = {
+  [key in keyof T]: boolean;
 }
 
 enum ActionTypes {
@@ -15,7 +15,7 @@ type Actions = {
   payload?: string;
 };
 
-function reducer(state: ToggleKeys, action: Actions) {
+function reducer(state: ToggleKeys<any>, action: Actions) {
   switch (action.type) {
     case ActionTypes.TOGGLE_SINGLE:
       if (action.payload === undefined || action.payload in state === false) {
@@ -44,13 +44,13 @@ function reducer(state: ToggleKeys, action: Actions) {
   }
 }
 
-function useMultiToggle(initialState: ToggleKeys) {
-  const [state, dispatch] = useReducer(reducer, initialState);
+function useMultiToggle<T>(initialState: ToggleKeys<T>) {
+  const [state, dispatch] = useReducer<Reducer<ToggleKeys<T>, Actions>>(reducer, initialState);
 
   return {
-    state: state as ToggleKeys,
-    toggle: (key: string) =>
-      dispatch({ type: ActionTypes.TOGGLE_SINGLE, payload: key }),
+    state,
+    toggle: (key: keyof T) =>
+      dispatch({ type: ActionTypes.TOGGLE_SINGLE, payload: (key as string) }),
     selectAll: () => dispatch({ type: ActionTypes.SELECT_ALL, payload: '' }),
     deselectAll: () =>
       dispatch({ type: ActionTypes.DESELECT_ALL, payload: '' }),

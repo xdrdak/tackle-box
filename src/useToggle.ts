@@ -1,12 +1,12 @@
 import { useState } from 'react';
 
-function useToggle(initialToggle = false) {
+function useToggle(initialToggle = false): [boolean, () => void] {
   const [isToggled, setToggle] = useState(initialToggle);
 
-  return {
+  return [
     isToggled,
-    toggle: () => setToggle(!isToggled),
-  };
+    () => setToggle(!isToggled),
+  ];
 }
 
 export default useToggle;
