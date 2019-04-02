@@ -1,19 +1,26 @@
 import * as React from 'react';
 
-interface ContainerProps {
-  initialState: any;
-  children: any;
-}
+type Reducer<State, Action> = (state: State, action: Action) => any;
+type ProviderValue<State, Type> = {
+  state: State;
+  dispatch?: (action: Type) => void;
+};
 
-function createFluxContainer(reducer: any, initialState: any) {
-  const Context = React.createContext(initialState);
+function createFluxContainer<State, Action, InitialState>(
+  reducer: Reducer<State, Action>,
+  initialState: InitialState,
+) {
+  const Context = React.createContext<ProviderValue<InitialState, Action>>({
+    state: initialState,
+  });
 
-  const Container: React.FunctionComponent<ContainerProps> = ({ children }) => {
+  const Container: React.FunctionComponent = ({ children }) => {
     const [state, dispatch] = React.useReducer(reducer, initialState);
+    const value = { state, dispatch };
+
     return (
-      <Context.Provider value={{ state, dispatch }}>
-        {children}
-      </Context.Provider>
+      // @ts-ignore
+      <Context.Provider value={value}>{children}</Context.Provider>
     );
   };
 

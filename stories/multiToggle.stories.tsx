@@ -2,10 +2,10 @@ import * as React from 'react';
 
 import { storiesOf } from '@storybook/react';
 
-import useMultiToggle from '../src/useMultiToggle';
+import useMultiSelect from '../src/useMultiSelect';
 
 const MultiToggleExample = () => {
-  const { state, toggle, selectAll, deselectAll } = useMultiToggle({
+  const { state, toggle, selectAll, deselectAll } = useMultiSelect({
     lion: false,
     tiger: false,
     bear: false,
@@ -30,7 +30,6 @@ const MultiToggleExample = () => {
     </div>
   );
 };
-
 
 storiesOf('MultiToggleExample', module).add('story', () => (
   <MultiToggleExample />

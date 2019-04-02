@@ -5,15 +5,15 @@ import { useEffect, useRef } from 'react';
 function useClickOutside(cb: Function) {
   const targetEl = useRef(null);
 
-  const handleClickOutside = (e: MouseEvent) => {
-    const { current } = targetEl;
-    // Yolo
-    if (!(current as any).contains(e.target)) {
-      cb(e);
-    }
-  };
-
   useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      const { current } = targetEl;
+      // Yolo
+      if (!(current as any).contains(e.target)) {
+        cb(e);
+      }
+    };
+
     document.addEventListener('click', handleClickOutside, true);
     return () => {
       document.removeEventListener('click', handleClickOutside, true);

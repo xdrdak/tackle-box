@@ -9,7 +9,6 @@ const ClickOutsideExample = () => {
   const targetEl = useClickOutside(() =>
     setState('you clicked outside the fabulous papayawhip box!'),
   );
-
   return (
     <div>
       <div

@@ -1,4 +1,4 @@
 import useToggle from './useToggle';
-import useMultiToggle from './useMultiToggle';
+import useMultiSelect from './useMultiSelect';
 
-export { useToggle, useMultiToggle };
+export { useToggle, useMultiSelect };

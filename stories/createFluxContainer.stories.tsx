@@ -8,17 +8,30 @@ const initialState = {
   animals: ['serval', 'caracal', 'fennec'],
   currentZoo: 'japari park',
   currentZooKeeper: 'You!',
+  lol: 'You!',
 };
 
-function reducer(state: any, action: any) {
-  console.log(state, action);
-  return state;
+type Action = { type: 'help' } | { type: 'what'; payload: string };
+
+function reducer(state: any, action: Action) {
+  switch (action.type) {
+    case 'help':
+      return {
+        ...state,
+        currentZooKeeper: 'Not you',
+      };
+    default:
+      return state;
+  }
 }
-const { Container, Consumer, useFluxContext }: any = createFluxContainer(reducer, initialState);
+const { Container, useFluxContext } = createFluxContainer(
+  reducer,
+  initialState,
+);
 
 const AnimalLister = () => {
-  const { state }: { state: any } = useFluxContext();
-
+  const { state, dispatch } = useFluxContext();
+  dispatch({ type: 'help' });
   return (
     <ul>
       {state.animals.map((animal: any) => (
@@ -29,24 +42,24 @@ const AnimalLister = () => {
 };
 
 const ZooKeeper = () => {
-  const { state, dispatch }: { state: any, dispatch: any } = useFluxContext();
+  // @ts-ignore
+  const { state, dispatch }: { state: any; dispatch: any } = useFluxContext();
 
   return (
     <div>
       Current zoo keeper: {state.currentZooKeeper}
-      <button onClick={() => dispatch('help')}>I don't wanna be the keeper any more!</button>
+      <button onClick={() => dispatch({ type: 'help' })}>
+        I don't wanna be the keeper any more!
+      </button>
     </div>
   );
-}
+};
 
 const CreateFluxContainerExample = () => {
   return (
     <Container>
       <div>
-        what is the park name?
-        <Consumer>
-          {({ state }: { state: any }) => state.currentZoo}
-        </Consumer>
+        what is the park name?&nbsp;
         <ZooKeeper />
         <AnimalLister />
       </div>

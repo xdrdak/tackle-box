@@ -1,8 +1,6 @@
 import { useReducer, Reducer } from 'react';
 
-type ToggleKeys<T> = {
-  [key in keyof T]: boolean;
-}
+type ToggleKeys<T> = { [key in keyof T]: boolean };
 
 enum ActionTypes {
   TOGGLE_SINGLE = 'TOGGLE_SINGLE',
@@ -39,22 +37,31 @@ function reducer(state: ToggleKeys<any>, action: Actions) {
       }, {});
     default:
       throw new Error(
-        'useMultiToggle dispatch: action or action type not found',
+        'useMultiSelect dispatch: action or action type not found',
       );
   }
 }
 
-function useMultiToggle<T>(initialState: ToggleKeys<T>) {
-  const [state, dispatch] = useReducer<Reducer<ToggleKeys<T>, Actions>>(reducer, initialState);
+/**
+ * Quickly create a controlled multi-select state
+ *
+ * @param initialState object with booleans as values
+ *
+ */
+function useMultiSelect<T>(initialState: ToggleKeys<T>) {
+  const [state, dispatch] = useReducer<Reducer<ToggleKeys<T>, Actions>>(
+    reducer,
+    initialState,
+  );
 
   return {
     state,
     toggle: (key: keyof T) =>
-      dispatch({ type: ActionTypes.TOGGLE_SINGLE, payload: (key as string) }),
+      dispatch({ type: ActionTypes.TOGGLE_SINGLE, payload: key as string }),
     selectAll: () => dispatch({ type: ActionTypes.SELECT_ALL, payload: '' }),
     deselectAll: () =>
       dispatch({ type: ActionTypes.DESELECT_ALL, payload: '' }),
   };
 }
 
-export default useMultiToggle;
+export default useMultiSelect;
