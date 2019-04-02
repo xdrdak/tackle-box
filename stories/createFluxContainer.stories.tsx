@@ -2,13 +2,12 @@ import * as React from 'react';
 
 import { storiesOf } from '@storybook/react';
 
-import createFluxContainer from '../src/createFluxContainer';
+import { createFluxContainer } from '../src';
 
 const initialState = {
   animals: ['serval', 'caracal', 'fennec'],
   currentZoo: 'japari park',
   currentZooKeeper: 'You!',
-  lol: 'You!',
 };
 
 type Action = { type: 'help' } | { type: 'what'; payload: string };
@@ -30,8 +29,8 @@ const { Container, useFluxContext } = createFluxContainer(
 );
 
 const AnimalLister = () => {
-  const { state, dispatch } = useFluxContext();
-  dispatch({ type: 'help' });
+  const { state } = useFluxContext();
+  
   return (
     <ul>
       {state.animals.map((animal: any) => (
@@ -42,13 +41,15 @@ const AnimalLister = () => {
 };
 
 const ZooKeeper = () => {
-  // @ts-ignore
-  const { state, dispatch }: { state: any; dispatch: any } = useFluxContext();
+  const { state, dispatch } = useFluxContext();
 
   return (
     <div>
       Current zoo keeper: {state.currentZooKeeper}
-      <button onClick={() => dispatch({ type: 'help' })}>
+      <button onClick={() => {
+        // @ts-ignore
+        dispatch({ type: 'help' });
+      }}>
         I don't wanna be the keeper any more!
       </button>
     </div>
