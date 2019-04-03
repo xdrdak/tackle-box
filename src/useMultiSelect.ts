@@ -1,4 +1,4 @@
-import { useReducer, Reducer } from 'react';
+import * as React from 'react';
 
 type ToggleKeys<T> = { [key in keyof T]: boolean };
 
@@ -8,10 +8,10 @@ enum ActionTypes {
   DESELECT_ALL = 'DESELECT_ALL',
 }
 
-type Actions = {
+interface Actions {
   type: ActionTypes;
   payload?: string;
-};
+}
 
 function reducer(state: ToggleKeys<any>, action: Actions) {
   switch (action.type) {
@@ -49,10 +49,9 @@ function reducer(state: ToggleKeys<any>, action: Actions) {
  *
  */
 function useMultiSelect<T>(initialState: ToggleKeys<T>) {
-  const [state, dispatch] = useReducer<Reducer<ToggleKeys<T>, Actions>>(
-    reducer,
-    initialState,
-  );
+  const [state, dispatch] = React.useReducer<
+    React.Reducer<ToggleKeys<T>, Actions>
+  >(reducer, initialState);
 
   return {
     state,

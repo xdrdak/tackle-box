@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-type FetchState<Payload> = {
+interface FetchState<Payload> {
   loading?: boolean;
   error?: any;
   data?: Payload;

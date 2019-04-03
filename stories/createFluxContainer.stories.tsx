@@ -30,7 +30,7 @@ const { Container, useFluxContext } = createFluxContainer(
 
 const AnimalLister = () => {
   const { state } = useFluxContext();
-  
+
   return (
     <ul>
       {state.animals.map((animal: any) => (
@@ -46,11 +46,12 @@ const ZooKeeper = () => {
   return (
     <div>
       Current zoo keeper: {state.currentZooKeeper}
-      <button onClick={() => {
-        // @ts-ignore
-        dispatch({ type: 'help' });
-      }}>
-        I don't wanna be the keeper any more!
+      <button
+        onClick={() => {
+          dispatch({ type: 'help' });
+        }}
+      >
+        I don&lsquo;t wanna be the keeper any more!
       </button>
     </div>
   );

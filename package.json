@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "build": "pack build"
+    "build": "pack build",
+    "lint": "eslint ./src/** ./stories/**"
   },
   "@pika/pack": {
     "pipeline": [
@@ -31,8 +32,13 @@
     "@types/storybook__addon-actions": "^3.4.2",
     "@types/storybook__addon-links": "^3.3.4",
     "@types/storybook__react": "^4.0.1",
+    "@typescript-eslint/eslint-plugin": "^1.6.0",
+    "@typescript-eslint/parser": "^1.6.0",
     "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.0.5",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-react": "^7.12.4",
     "jest": "^24.1.0",
     "react": "^16.8.1",
     "react-docgen-typescript-loader": "^3.0.1",

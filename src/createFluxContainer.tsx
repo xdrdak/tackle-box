@@ -1,9 +1,13 @@
 import * as React from 'react';
 
 type Reducer<State, Action> = (state: State, action: Action) => any;
-type ProviderValue<State, Type> = {
+interface ProviderValue<State, Type> {
   state: State;
   dispatch?: (action: Type) => void;
+}
+
+type Props = {
+  children: React.ReactNode;
 };
 
 function createFluxContainer<State, Action, InitialState>(
@@ -14,10 +18,9 @@ function createFluxContainer<State, Action, InitialState>(
     state: initialState,
   });
 
-  const Container: React.FunctionComponent = ({ children }) => {
+  const Container: React.FunctionComponent<Props> = ({ children }: Props) => {
     const [state, dispatch] = React.useReducer(reducer, initialState);
     const value = { state, dispatch };
-
     return <Context.Provider value={value}>{children}</Context.Provider>;
   };
 

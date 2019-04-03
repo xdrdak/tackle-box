@@ -4,12 +4,12 @@ import { storiesOf } from '@storybook/react';
 
 import { useFetch } from '../src';
 
-type ServerPayload = {
+interface ServerPayload {
   userId: number;
   id: number;
   title: string;
   completed: string;
-};
+}
 
 const UseFetch = () => {
   const { data, error, loading } = useFetch<ServerPayload>(
