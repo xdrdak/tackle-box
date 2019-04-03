@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { storiesOf } from '@storybook/react';
 
-import useClickOutside from '../src/useClickOutside';
+import { useClickOutside } from '../src';
 
 const ClickOutsideExample = () => {
   const [state, setState] = React.useState('wanna try clicking outside?');

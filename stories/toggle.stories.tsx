@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { storiesOf } from '@storybook/react';
 
-import useToggle from '../src/useToggle';
+import { useToggle } from '../src';
 
 const ToggleExample = () => {
   const [isToggled, toggle] = useToggle();

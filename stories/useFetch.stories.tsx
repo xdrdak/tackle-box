@@ -13,7 +13,7 @@ type ServerPayload = {
 
 const UseFetch = () => {
   const { data, error, loading } = useFetch<ServerPayload>(
-    'https://jsonplaceholder.typicode.com/todos/1'
+    'https://jsonplaceholder.typicode.com/todos/1',
   );
 
   if (loading) {

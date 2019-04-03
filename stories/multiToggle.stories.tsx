@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { storiesOf } from '@storybook/react';
 
-import useMultiSelect from '../src/useMultiSelect';
+import { useMultiSelect } from '../src';
 
 const MultiToggleExample = () => {
   const { state, toggle, selectAll, deselectAll } = useMultiSelect({
