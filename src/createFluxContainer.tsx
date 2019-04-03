@@ -18,10 +18,7 @@ function createFluxContainer<State, Action, InitialState>(
     const [state, dispatch] = React.useReducer(reducer, initialState);
     const value = { state, dispatch };
 
-    return (
-      // @ts-ignore
-      <Context.Provider value={value}>{children}</Context.Provider>
-    );
+    return <Context.Provider value={value}>{children}</Context.Provider>;
   };
 
   const useFluxContext = () => React.useContext(Context);

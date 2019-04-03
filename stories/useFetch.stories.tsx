@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { storiesOf } from '@storybook/react';
 
-import useFetch from '../src/useFetch';
+import { useFetch } from '../src';
 
 type ServerPayload = {
   userId: number;
